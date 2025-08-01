@@ -5,7 +5,7 @@
 ## Lenguajes de programación
 
 - Python
-- ###
+- XXX
 
 ## Algoritmos
 
