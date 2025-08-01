@@ -2,6 +2,11 @@
 
 [DESCRIPCIÓN]
 
+## Lenguajes de programación
+
+- Python
+- ###
+
 ## Algoritmos
 
 - Códigos de Hamming - Chuy
