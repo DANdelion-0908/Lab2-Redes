@@ -4,8 +4,8 @@
 
 ## Lenguajes de programación
 
-- Python
-- XXX
+- Receptor: Python
+- Emisor: C++
 
 ## Algoritmos
 
