@@ -1,7 +1,7 @@
 import sys
-from py_modules.checksum import checksum
-from py_modules.convolucionales import convolucionales
-from py_modules.hamming import hamming
+from receptor_py.checksum import checksum
+from receptor_py.viterbi import viterbi
+from receptor_py.hamming import hamming
 
 if __name__ == "__main__":
 
@@ -13,18 +13,18 @@ if __name__ == "__main__":
         if algorithm == "hamming":
             hamming(binary_string)
 
-        elif algorithm == "convolucionales":
-            convolucionales(binary_string)
+        elif algorithm == "viterbi":
+            viterbi(binary_string)
 
         elif algorithm == "checksum":
             checksum(binary_string)
 
         else:
             print("Invalid algorithm")
-            print("Usage: python get_strings_sys.py <hamming|convolucionales|checksum> <binary_string>")
+            print("Usage: python get_strings_sys.py <hamming|viterbi|checksum> <binary_string>")
             sys.exit(1)
 
     else:
-        print("Usage: python get_strings_sys.py <hamming|convolucionales|checksum> <binary_string>")
+        print("Usage: python get_strings_sys.py <hamming|viterbi|checksum> <binary_string>")
         sys.exit(1) 
 
