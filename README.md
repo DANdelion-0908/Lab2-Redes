@@ -18,3 +18,15 @@
 ```
 g++ emisor.cpp emisor_cpp/hamming.cpp emisor_cpp/viterbi.cpp emisor_cpp/checksum.cpp -o emisor
 ```
+
+#### Como correr el emisor
+```
+Usage: ./emisor <hamming|viterbi|checksum> <binary_string> 
+```
+
+#### Como correr el receptor
+
+```
+Usage: python receptor.py <hamming|viterbi|checksum> <binary_string>
+```
+

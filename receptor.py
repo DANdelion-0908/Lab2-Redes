@@ -21,10 +21,10 @@ if __name__ == "__main__":
 
         else:
             print("Invalid algorithm")
-            print("Usage: python get_strings_sys.py <hamming|viterbi|checksum> <binary_string>")
+            print("Usage: python receptor.py <hamming|viterbi|checksum> <binary_string>")
             sys.exit(1)
 
     else:
-        print("Usage: python get_strings_sys.py <hamming|viterbi|checksum> <binary_string>")
+        print("Usage: python receptor.py <hamming|viterbi|checksum> <binary_string>")
         sys.exit(1) 
 
