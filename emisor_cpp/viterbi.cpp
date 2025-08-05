@@ -1,24 +1,26 @@
-#include <string>
 #include "viterbi.h"
+
 #include <iostream>
+#include <string>
+#include <vector>
 
-std::string viterbi(std::string binary_string) {
-    std::string encoded_message;
-    int s0 = 0, s1 = 0; // estado inicial del codificador
-    
-    for (char bit : binary_string) {
-        if (bit != '0' && bit != '1') {
-            throw std::invalid_argument("El mensaje debe ser una cadena de 0s y 1s");
-        }
-        
-        int current_bit = bit - '0';
-        int output0 = (current_bit + s1 + s0) % 2; // g0 = 1 + D + D^2
-        int output1 = (current_bit + s1) % 2;      // g1 = 1 + D^2
-        s0 = s1;
-        s1 = current_bit;
+std::string viterbi(std::string input) {
+    std::string output;
+    int shift_register[3] = {0, 0, 0}; // bit0: actual, bit1: anterior, bit2: anterior del anterior
 
-        encoded_message += std::to_string(output0) + std::to_string(output1);
+    for (char bit_char : input) {
+        int bit = bit_char - '0';
+
+        shift_register[2] = shift_register[1];
+        shift_register[1] = shift_register[0];
+        shift_register[0] = bit;
+
+        int out1 = shift_register[0] ^ shift_register[1] ^ shift_register[2];  // g1 = 111
+        int out2 = shift_register[0] ^ shift_register[2];                      // g2 = 101
+
+        output += std::to_string(out1);
+        output += std::to_string(out2);
     }
-    
-    return encoded_message;
+
+    return output;
 }
