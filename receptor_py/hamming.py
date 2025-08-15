@@ -1,5 +1,5 @@
 def hamming(binary_string):
-    print(f"hamming with: {binary_string}")
+    print(f"hamming con: {binary_string}")
     
     # string a lista de bits 
     bits = list(binary_string)
@@ -10,40 +10,42 @@ def hamming(binary_string):
     while 2**r < n + 1:
         r += 1
     
+    # nota importante, este algoritmo detecta errores y funciona mu b ien para 1 error, pero en 2 errores en adelante puede haber comportamiento inesperado
     # calcular el síndrome aka las posiciones erroneas
     syndrome = 0
     for p in range(r):
-        pos_paridad = 2**p - 1  # base 0
-        count = 0
+        pos_paridad = 2**p - 1  # Índice base 0
         
-        # Verificar todas las posiciones cubiertas por este bit de paridad
-        for i in range(pos_paridad, n, 2**(p + 1)):
-            for j in range(i, min(i + 2**p, n)):
-                if bits[j] == '1':
-                    count += 1
+        # Calcular XOR solo de los bits de DATOS en el grupo
+        data_xor = 0
+        for i in range(n):
+            # Saltar el bit de paridad actual
+            if i == pos_paridad:
+                continue
+                
+            # Incluir solo si pertenece al grup que ve el bit
+            if (i + 1) & (1 << p):
+                data_xor ^= int(bits[i])
         
-        # Si la paridad es impar, hay error
-        if count % 2 != 0:
-            syndrome += pos_paridad + 1  
+        # Comparar con el bit de paridad recibido
+        if data_xor != int(bits[pos_paridad]):
+            print("Error encontrado")
+            syndrome += (1 << p)  # Sumar 2^p al síndrome
     
-    # Corregir error si hay
     if syndrome != 0:
         if syndrome - 1 < n:
             print(f"Error detectado en posición {syndrome}")
             bits[syndrome - 1] = '1' if bits[syndrome - 1] == '0' else '0'
         else:
-            print("Error no corregible (síndrome fuera de rango)")
+            print("Error no corregible ")
             return None
     
-    # obtener bits de datos 
+    # Extraer bits de datos
     data_bits = []
-    data_index = 0
     for i in range(n):
-        # Las posiciones de datos son las que no son potencias de 2
-        if (i + 1) & i != 0:
-            if data_index < len(binary_string) - r:
-                data_bits.append(bits[i])
-                data_index += 1
-    result = ''.join(data_bits) 
-    print(f"Cadena orignal: {result}")
+        if (i + 1) & (i) != 0:
+            data_bits.append(bits[i])
+    
+    result = ''.join(data_bits)
+    print(f"Cadena original: {result}")
     return result
