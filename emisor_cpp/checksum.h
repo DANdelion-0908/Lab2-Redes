@@ -2,6 +2,8 @@
 #define CHECKSUM_H
 #include <string>
 
-std::string checksum(std::string binary_string);
+using namespace std;
+
+string checksum(string binary_string);
 
 #endif

@@ -5,30 +5,32 @@
 #include "./emisor_cpp/hamming.h"
 #include "./emisor_cpp/viterbi.h"
 
+using namespace std; // Para quitar el std:: 
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <hamming|viterbi|checksum> <binary_string>" << std::endl;
+        cerr << "Usage: " << argv[0] << " <hamming|viterbi|checksum> <binary_string>" << endl;
         return 1; 
     }
 
-    std::string algorithm = argv[1];
-    std::string binary_string = argv[2];
-    //std::cout << "binary string: " << binary_string << std::endl;
+    string algorithm = argv[1];
+    string binary_string = argv[2];
+    //cout << "binary string: " << binary_string << endl;
 
     if (algorithm == "hamming") {
-        std::string result = hamming(binary_string);
-        std::cout << "Hamming result: " << result << std::endl;
+        string result = hamming(binary_string);
+        cout << "Hamming result: " << result << endl;
     } 
     else if (algorithm == "viterbi") {
-        std::string result = viterbi(binary_string);
-        std::cout << "Viterbi result: " << result << std::endl;
+        string result = viterbi(binary_string);
+        cout << "Viterbi result: " << result << endl;
     } 
     else if (algorithm == "checksum") {
-        std::string result = checksum(binary_string);
-        std::cout << "Checksum result: " << result << std::endl;
+        string result = checksum(binary_string);
+        cout << "Checksum result: " << result << endl;
     } 
     else {
-        std::cerr << "Invalid algorithm. Options: hamming, viterbi, checksum" << std::endl;
+        cerr << "Invalid algorithm. Options: hamming, viterbi, checksum" << std::endl;
         return 1; 
     }
 

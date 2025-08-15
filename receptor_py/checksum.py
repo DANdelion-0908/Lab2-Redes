@@ -1,7 +1,7 @@
-def fletcher_checksum_verify(received_message):
+def checksum(received_message):
     # Separar el mensaje original y el checksum
-    original_message = received_message[16:]
-    received_checksum = received_message[:16]
+    original_message = received_message[:-16]
+    received_checksum = received_message[-16:]
     
     # Añadir padding con ceros si es necesario para completar bytes
     padded_message = original_message
@@ -25,6 +25,6 @@ def fletcher_checksum_verify(received_message):
     
     # Comparar con el checksum recibido
     if calculated_checksum_bits == received_checksum:
-        return True, original_message
+        print(f"Mensaje original: {original_message}\nNo se detectaron errores.")
     else:
-        return False, original_message
+        print(f"Error en el mensaje.")

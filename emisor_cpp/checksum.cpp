@@ -1,11 +1,11 @@
-#include <iostream>
 #include <string>
 #include <vector>
 #include <bitset>
+#include "checksum.h"
 
 using namespace std;
 
-string fletcher_checksum(string binary_string) {
+string checksum(string binary_string) {
     // Añadir padding con ceros si es necesario para completar bytes
     while (binary_string.length() % 8 != 0) {
         binary_string = "0" + binary_string;
@@ -32,7 +32,6 @@ string fletcher_checksum(string binary_string) {
     // Convertir el checksum a string binario de 16 bits y concatenar con la cadena original
     bitset<16> checksum_bits(checksum_value);
     string checksum = checksum_bits.to_string();
-    cout << binary_string
-     + checksum << endl;
+
     return binary_string + checksum;
 }
