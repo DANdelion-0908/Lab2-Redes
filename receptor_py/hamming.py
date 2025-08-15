@@ -29,7 +29,7 @@ def hamming(binary_string):
         
         # Comparar con el bit de paridad recibido
         if data_xor != int(bits[pos_paridad]):
-            print("Error encontrado")
+            #print("Error encontrado")
             syndrome += (1 << p)  # Sumar 2^p al síndrome
     
     if syndrome != 0:
