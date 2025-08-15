@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include <bitset>
-#include <algorithm>
 
 using namespace std;
 
